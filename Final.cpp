@@ -17,32 +17,36 @@ int main(int argc, char* argv[]){
 
     string s="";
     int i=-1;
-    while(i!=4){
+    while(i!=7){
         cout << "======Main Menu======" << endl;
-        cout << "1. Print vertices" << endl;
-        cout << "2. Find districts" << endl;
-        cout << "3. Find shortest path" << endl;
-        cout << "4. Quit" << endl;
+        cout << "1. Enter a new patient" << endl;
+        cout << "2. Print patients" << endl;
+        cout << "3. Get next patient" << endl;
+        cout << "4. Remove patient from queue" << endl;
+        cout << "5. Find a patient" << endl;
+        cout << "6. Edit patient" << endl;
+        /*cout << "6. Get next specialty patient" << endl;
+        cout << "7. List specialty doctors" << endl;
+        cout << "8. Add a new doctor" << endl;*/
+        cout << "7. Quit" << endl;
         cin >> s;
         i=stoi(s);
         if(i==1){
-            g.displayEdges();
         }
         if(i==2){
-            g.assignDistricts();
-            //g.displayEdges();
+
         }
         if(i==3){
-            string st;
-            string en;
-            cout << "Enter a starting city:" << endl;
-            cin.ignore();
-            getline(cin, st);
-            cout << "Enter an ending city:" << endl;
-            //cin.ignore();
-            getline(cin, en);
-            //cout << "st: " << st << " en: " << en<< endl;
-            g.shortestPath(st, en);
+
+        }
+        if(i==4){
+
+        }
+        if(i==5){
+
+        }
+        if(i==6){
+
         }
 
 
