@@ -2,12 +2,39 @@
 
 PQueue::PQueue(){
     std::cout << "Creating new queue" << std::endl;
-    patientArray=new Patient*[2]; //set to ten
+    patientArray=new Patient*[10]; //set to ten
     for(int i=0; i< arraySize; i++)
         patientArray[i]=NULL;
 
 
 }
+
+PQueue::~PQueue(){
+    for(int i=0; i< arraySize; i++){
+        if(patientArray[i]!=NULL){
+            delete patientArray[i];
+        }
+    }
+    std::cout << "Deleted Values!" << std::endl;
+
+}
+
+
+void PQueue::printPatientData(std::string name){
+        Patient * p = findPatient(name);
+        if(p==NULL){
+            std::cout<< "Patient not found." << std::endl;
+        }
+        else{
+            std::cout << "^^^^^^^^^^^^^^" << std::endl;
+            std::cout << "Patient Name: " << p->name << std::endl;
+            std::cout << "Urgency: " << p->urgency << std::endl;
+            std::cout << "Specialist: " << p->specialist << std::endl;
+            std::cout << "Notes: " << p->notes << std::endl;
+            std::cout << "^^^^^^^^^^^^^^" << std::endl;
+        }
+}
+
 void PQueue::insertNewPatient(std::string name, int urgency, std::string doctor, std::string notes){
     Patient* p=new Patient(name, urgency, doctor, notes);
     std::cout << "New patient: " << p->name << std::endl;

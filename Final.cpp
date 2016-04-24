@@ -90,20 +90,44 @@ int main(){
             string findName;
             cin.ignore();
             getline(cin, findName);
-            Patient * p = q.findPatient(findName);
-            if(p==NULL){
-                cout<< "Patient not found." << endl;
-            }
-            else{
-                cout << "^^^^^^^^^^^^^^" << endl;
-                cout << "Patient Name: " << p->name << endl;
-                cout << "Urgency: " << p->urgency << endl;
-                cout << "Specialist: " << p->specialist << endl;
-                cout << "Notes: " << p->notes << endl;
-                cout << "^^^^^^^^^^^^^^" << endl;
-            }
+            q.printPatientData(findName);
         }
         if(i==6){
+            cout << "Enter a patient name. "  << endl;
+            string findName;
+            cin.ignore();
+            getline(cin, findName);
+
+            q.removePatient(findName);
+
+            bool correct=false;
+            string name, special, notes, u;
+            int urgency;
+            while(!correct){
+
+                cout << "Please enter the name of the patient. " << endl;
+                getline(cin, name);
+                cout << "Please enter the urgency as a number. The higher the number, the more urgency and the earlier in the queue." << endl;
+                getline(cin, u);
+                urgency=stoi(u);
+                cout << "Please enter the specialist for the patient. If none, enter 'none'" << endl;
+                getline(cin, special);
+                cout << "Please enter any special notes about the patient. If none, enter 'none'" << endl;
+                getline(cin, notes);
+                cout << "Is this information correct?" << endl;
+                cout << "Name: " << name << ", Urgency: " << urgency << ", Specialist: " << special << ", notes: " << notes << endl;
+                string check;
+                getline(cin, check);
+                if(check=="no"||check=="n"||check=="NO"||check=="N"){
+                    cout << "Please re-enter the information." << endl;
+                }
+                else
+                    correct=true;
+
+            }
+            cout << "Inserting" << endl;
+            cout << "***********" << endl;
+            q.insertNewPatient(name, urgency, special, notes);
 
         }
 

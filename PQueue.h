@@ -21,7 +21,7 @@ struct Patient{
 class PQueue{
 public:
     PQueue();
-    //~PQueue();
+    ~PQueue();
     void insertNewPatient(std::string name, int urgency, std::string doctor, std::string notes);
     Patient *pop();
     void printArray();
@@ -29,10 +29,11 @@ public:
     Patient * findPatient(std::string name);
     int removePatient(std::string name);
     int deletePatient(Patient * nextP, int patientIndex);
+    void printPatientData(std::string name);
 
 private:
     //std::vector <Patient* > patientQueue;
-    int arraySize=2; //set to ten
+    int arraySize=10; //set to ten
     Patient ** patientArray;
     Patient * largestChild(Patient* parent);
     void swapPatientsByIndex(int indChild, int indParent);
