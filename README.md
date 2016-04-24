@@ -17,7 +17,7 @@ Menu Options:
 7. Quit
 
 
-##TO RUN PROGRAM:
+##TO RUN PROGRAM (in VM):
 
 1. in terminal, enter
 "git clone https://github.com/ceilingcranes/Hartnett_CSCI2270_FinalProject"
@@ -32,4 +32,22 @@ Menu Options:
 
 5. Type a number and hit enter to select the menu options.
 
+
+To run program in general: Clone the respository, then compile and run as you would any c++ program.
+
+Dependencies: None
+
+System Requirements: Only tested on linux, should work on any OS that can run and compile the assignments 
+
+Group Members: Maxine Hartnett
+
+Contributors: None
+
+Open bugs/issues: There may be a bug when entering a new patient that causes and infinite loop, but I haven't been able to replicate it, and it was several versions ago.
+
+Enhancement request: Find a more reliable way of identifying patients than name- such as a unique identifying number - and when searching for a patient with that name, if there are multiple, confirm the patient.
+I also have some structuring for adding speciality doctors, so that you could pull the next patient assigned to that doctor, but that's no where close to being finished- it's more something I implemented in case I had time to add the funtionality.
+
+
 **Please let me know if you encounter any errors!**
+
