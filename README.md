@@ -3,7 +3,8 @@ My project will use a priority queue to create an example interface for a hospit
 
 I will implement this using a priority queue in the form of a heap. This will allow me to organize the patients by urgency and by the order of their arrival. 
 
-
+I found information on heaps and priority queues here:
+http://pages.cs.wisc.edu/~vernon/cs367/notes/11.PRIORITY-Q.html
 
 Menu Options:
 
