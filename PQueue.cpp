@@ -26,17 +26,21 @@ void PQueue::printPatientData(std::string name){
             std::cout<< "Patient not found." << std::endl;
         }
         else{
-            std::cout << "^^^^^^^^^^^^^^" << std::endl;
-            std::cout << "Patient Name: " << p->name << std::endl;
-            std::cout << "Urgency: " << p->urgency << std::endl;
-            std::cout << "Specialist: " << p->specialist << std::endl;
-            std::cout << "Notes: " << p->notes << std::endl;
-            std::cout << "^^^^^^^^^^^^^^" << std::endl;
+            printPatientPointer(p);
         }
 }
 
-void PQueue::insertNewPatient(std::string name, int urgency, std::string doctor, std::string notes){
-    Patient* p=new Patient(name, urgency, doctor, notes);
+void PQueue::printPatientPointer(Patient * p){
+    std::cout << "^^^^^^^^^^^^^^" << std::endl;
+    std::cout << "Patient Name: " << p->name << std::endl;
+    std::cout << "Urgency: " << p->urgency << std::endl;
+    //std::cout << "Specialist: " << p->specialist << std::endl;
+    std::cout << "Notes: " << p->notes << std::endl;
+    std::cout << "^^^^^^^^^^^^^^" << std::endl;
+}
+
+void PQueue::insertNewPatient(std::string name, int urgency, std::string notes){
+    Patient* p=new Patient(name, urgency, notes);
     std::cout << "New patient: " << p->name << std::endl;
     Patient* prevP=patientArray[1]; //the root of the heap
     int index=1;

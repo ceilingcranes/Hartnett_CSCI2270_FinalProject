@@ -4,15 +4,15 @@
 struct Patient{
     std::string name;
     int urgency; //The higher the number, the more urgent
-    std::string specialist;
+    //std::string specialist;
     std::string notes;
     Patient *parent;
     Patient *left;
     Patient *right;
-    Patient(std::string n, int u, std::string s, std::string note){
+    Patient(std::string n, int u, std::string note){
         name=n;
         urgency=u;
-        s=specialist;
+        //s=specialist;
         notes=note;
     }
 
@@ -22,7 +22,7 @@ class PQueue{
 public:
     PQueue();
     ~PQueue();
-    void insertNewPatient(std::string name, int urgency, std::string doctor, std::string notes);
+    void insertNewPatient(std::string name, int urgency, std::string notes);
     Patient *pop();
     void printArray();
     void doubleArray();
@@ -30,6 +30,7 @@ public:
     int removePatient(std::string name);
     int deletePatient(Patient * nextP, int patientIndex);
     void printPatientData(std::string name);
+    void printPatientPointer(Patient * p);
 
 private:
     //std::vector <Patient* > patientQueue;
