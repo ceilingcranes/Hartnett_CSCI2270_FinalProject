@@ -6,6 +6,7 @@ I will implement this using a priority queue in the form of a heap. This will al
 I found information on heaps and priority queues here:
 http://pages.cs.wisc.edu/~vernon/cs367/notes/11.PRIORITY-Q.html
 
+
 Menu Options:
 
 1. Enter a new patient
@@ -15,3 +16,20 @@ Menu Options:
 6. Edit a patient- Basically delete and re-enter a patient in one menu option
 7. Quit
 
+
+##TO RUN PROGRAM:
+
+1. in terminal, enter
+"git clone https://github.com/ceilingcranes/Hartnett_CSCI2270_FinalProject"
+
+2. Navigate to the main directory ( /Hartnett_CSCI2270_FinalProject )
+
+3. Compile by typing into the terminal
+"g++ -std=c++11 Final.cpp PQueue.cpp"
+
+4. Run by typing into the terminal 
+"./a.out"
+
+5. Type a number and hit enter to select the menu options.
+
+**Please let me know if you encounter any errors!**
