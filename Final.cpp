@@ -76,12 +76,12 @@ int main(){
             string findName;
             cin.ignore();
             getline(cin, findName);
-            int removed=p.removePatient(findName);
+            int removed=q.removePatient(findName);
             if(removed!=0){
                 cout << "Error removing patient." << endl;
             }
             else{
-                cout << "Sucessfully removed patient." << endl;
+                cout << "Successfully removed patient." << endl;
             }
 
         }
