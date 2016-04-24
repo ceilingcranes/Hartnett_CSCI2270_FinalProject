@@ -1,3 +1,9 @@
+/* Author: Maxine Hartnett
+*Class: CSCI 2270
+*Information on heaps and priority queues found here: <http://pages.cs.wisc.edu/~vernon/cs367/notes/11.PRIORITY-Q.html>
+*/
+
+
 #include <iostream>
 #include "PQueue.h"
 #include <vector>

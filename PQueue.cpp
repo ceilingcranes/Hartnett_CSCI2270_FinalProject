@@ -1,7 +1,7 @@
 #include "PQueue.h"
 
 PQueue::PQueue(){
-    std::cout << "Creating new queue" << std::endl;
+    //std::cout << "Creating new queue" << std::endl;
     patientArray=new Patient*[10]; //set to ten
     for(int i=0; i< arraySize; i++)
         patientArray[i]=NULL;
@@ -15,7 +15,7 @@ PQueue::~PQueue(){
             delete patientArray[i];
         }
     }
-    std::cout << "Deleted Values!" << std::endl;
+   // std::cout << "Deleted Values!" << std::endl;
 
 }
 
@@ -41,11 +41,11 @@ void PQueue::printPatientPointer(Patient * p){
 
 void PQueue::insertNewPatient(std::string name, int urgency, std::string notes){
     Patient* p=new Patient(name, urgency, notes);
-    std::cout << "New patient: " << p->name << std::endl;
+    //std::cout << "New patient: " << p->name << std::endl;
     Patient* prevP=patientArray[1]; //the root of the heap
     int index=1;
     if(prevP==NULL){
-        std::cout << "Root" << std::endl;
+        //std::cout << "Root" << std::endl;
     }
     while(prevP!=NULL&&index<arraySize){
         index++;
@@ -53,7 +53,8 @@ void PQueue::insertNewPatient(std::string name, int urgency, std::string notes){
         prevP=patientArray[index];
     }
 
-    std::cout << "Index: " << index << std::endl;
+    //std::cout << "Index: " << index << std::endl;
+
     //Index is now equal to the next empty spot in the array.
     if(index==1){ //heap is empty
         patientArray[index] = p;
@@ -80,22 +81,23 @@ void PQueue::insertNewPatient(std::string name, int urgency, std::string notes){
         p->left=NULL;
         p->right=NULL;
         if(parent!=NULL){
-            std::cout << "Parent: " << parent->name << std::endl;
+            //std::cout << "Parent: " << parent->name << std::endl;
         }
         else
-            std::cout << "Parent is null. Parent index: " << index/2 <<std::endl;
+            //std::cout << "Parent is null. Parent index: " << index/2 <<std::endl;
         //to maintain heap properties: The parent has to have higher urgency
-        //** THIS IS GETTING CAUGHT IN INFINITE LOOP check it out yo
+
         while(parent!=NULL&&parent->urgency < p->urgency){
-            std::cout << "Parent: " << parent->name << " Parent urgency: " <<parent->urgency << ", child urgency: " << p->urgency << std::endl;
+            /*std::cout << "Parent: " << parent->name << " Parent urgency: " <<parent->urgency << ", child urgency: " << p->urgency << std::endl;
 
             std::cout << "Swapping" << std::endl;
             std::cout << "indChild: " << index << " indParent: " << index/2 << std::endl;
-            std::cout << "Child: " << p->name << " Parent: " << parent->name << std::endl;
+            std::cout << "Child: " << p->name << " Parent: " << parent->name << std::endl;*/
+
             swapPatientsByIndex(index, index/2);
             if(p->parent!=NULL){
                 parent=p->parent;
-                std::cout << "Setting new parent to " << parent->name << std::endl;
+                //std::cout << "Setting new parent to " << parent->name << std::endl;
             }
             else
                 parent=NULL;
@@ -136,7 +138,7 @@ void PQueue::swapPatients(Patient* child, Patient* parent){
 
 //will swap two elements in the array at indexes indChild and indParent
 void PQueue::swapPatientsByIndex(int indChild, int indParent){
-    std::cout << "Starting swap" << std::endl;
+    //std::cout << "Starting swap" << std::endl;
     Patient * child=patientArray[indChild];
     Patient * parent=patientArray[indParent];
     if(child==NULL){
@@ -145,18 +147,18 @@ void PQueue::swapPatientsByIndex(int indChild, int indParent){
     if(parent==NULL){
         std::cout << "Parent null" << std::endl;
     }
-    std::cout << "parent: " << parent->name << " child: " << child->name << std::endl;
+    //std::cout << "parent: " << parent->name << " child: " << child->name << std::endl;
     Patient *otherChild;
     bool left=false;
     if(parent->left==child){
-        std::cout << "child to left" << std::endl;
+        //std::cout << "child to left" << std::endl;
         otherChild=parent->right;
         left=true;
     }
     else{
         otherChild=parent->left;
     }
-    std::cout << "Setting parents" << std::endl;
+    //std::cout << "Setting parents" << std::endl;
     child->parent=parent->parent;
     if(parent->parent!=NULL){
         if(parent->parent->left==parent)
@@ -165,14 +167,14 @@ void PQueue::swapPatientsByIndex(int indChild, int indParent){
             parent->parent->right=child;
     }
     parent->parent=child;
-    std::cout << "Parents set" << std::endl;
+    //std::cout << "Parents set" << std::endl;
     if(child->left!=NULL)
         child->left->parent=parent;
     if(child->right!=NULL)
         child->right->parent=parent;
     parent->left=child->left;
     parent->right=child->right;
-    std::cout << "Children set" << std::endl;
+    //std::cout << "Children set" << std::endl;
     if(otherChild!=NULL)
         otherChild->parent=child;
     if(left){
@@ -183,10 +185,10 @@ void PQueue::swapPatientsByIndex(int indChild, int indParent){
         child->right=parent;
         child->left=otherChild;
     }
-    std::cout << "Setting in array" << std::endl;
+    //std::cout << "Setting in array" << std::endl;
     patientArray[indChild]=parent;
     patientArray[indParent]=child;
-    std::cout << "Swapped " << parent->name << " with " << child->name << std::endl;
+    //std::cout << "Swapped " << parent->name << " with " << child->name << std::endl;
 
 
 }
@@ -196,67 +198,14 @@ void PQueue::swapPatientsByIndex(int indChild, int indParent){
 Patient * PQueue::pop(){
     Patient * nextP = patientArray[1]; //the root of the array, the patient with max urgency
     if(nextP==NULL){
-        std::cout << "Queue empty (pop)" << std::endl;
+        //std::cout << "Queue empty (pop)" << std::endl;
         return NULL;
     }
     int i=deletePatient(nextP, 1);
     if(i==0){
-        std::cout << "Sucessfully deleted" << std::endl;
+        std::cout << "Successfully deleted" << std::endl;
     }
-    /*Patient * endOfArray=patientArray[1];
-    int i=1;
-    while(patientArray[i+1]!=NULL&&i<arraySize){
-        i++;
-        endOfArray=patientArray[i];
-    }
-    std::cout << "End of array: " << endOfArray->name <<std::endl;
-    if(i!=1){ //if there is more than one element in the heap
-        patientArray[1]=endOfArray;
-        patientArray[i]=NULL;
-        std::cout << "Setting array at " << i << " to null. " << std::endl;
-        if(endOfArray->parent->left==endOfArray){
-            endOfArray->parent->left=NULL;
-        }
-        else
-            endOfArray->parent->right=NULL;
-        endOfArray->left=nextP->left;
-        if(endOfArray->left!=NULL){
-            std::cout << "new left child: " << endOfArray->left->name << std::endl;
 
-        }
-        else
-            std::cout << "Left child null." << std::endl;
-        if(endOfArray->right!=NULL){
-            std::cout << "new right child: " << endOfArray->right->name << std::endl;
-
-        }
-        else
-            std::cout << "Right child null." << std::endl;
-        endOfArray->right=nextP->right;
-        endOfArray->parent=NULL;
-        //If the new root has children that are higher urgency (Should always be true, basically)
-        Patient * largerChild=NULL;
-        largerChild= largestChild(endOfArray);
-
-        while(largerChild!=NULL){
-            std::cout << "New Root: " << endOfArray->name << ", largest Child: " << largerChild->name << std::endl;
-            if(largerChild->urgency > endOfArray->urgency){
-                std::cout << "Swapping " << endOfArray->name << " and " << largerChild->name <<std::endl;
-                swapPatients(largerChild, endOfArray);
-                largerChild = largestChild(endOfArray);
-            }
-        }
-
-
-
-
-
-    }
-    else{
-        std::cout << "Only root, setting to null" << std::endl;
-        patientArray[1]=NULL;
-    }
-    */
     return nextP;
 
 }
@@ -275,12 +224,12 @@ int PQueue::deletePatient(Patient * nextP, int indexToDelete){
         endOfArray=patientArray[i];
     }
 
-    std::cout << "End of array: " << endOfArray->name <<std::endl;
+    //std::cout << "End of array: " << endOfArray->name <<std::endl;
     if(i!=1){ //if there is more than one element in the heap
 
         patientArray[indexToDelete]=endOfArray;
         patientArray[i]=NULL;
-        std::cout << "Setting array at " << i << " to null. " << std::endl;
+        //std::cout << "Setting array at " << i << " to null. " << std::endl;
         if(endOfArray->parent->left==endOfArray){
             endOfArray->parent->left=NULL;
         }
@@ -288,17 +237,17 @@ int PQueue::deletePatient(Patient * nextP, int indexToDelete){
             endOfArray->parent->right=NULL;
         endOfArray->left=nextP->left;
         if(endOfArray->left!=NULL){
-            std::cout << "new left child: " << endOfArray->left->name << std::endl;
+            //std::cout << "new left child: " << endOfArray->left->name << std::endl;
 
         }
         else
-            std::cout << "Left child null." << std::endl;
+            //std::cout << "Left child null." << std::endl;
         if(endOfArray->right!=NULL){
-            std::cout << "new right child: " << endOfArray->right->name << std::endl;
+            //std::cout << "new right child: " << endOfArray->right->name << std::endl;
 
         }
-        else
-            std::cout << "Right child null." << std::endl;
+       // else
+            //std::cout << "Right child null." << std::endl;
         endOfArray->right=nextP->right;
         endOfArray->parent=nextP->parent;
         //If the new root has children that are higher urgency (Should always be true, basically)
@@ -306,9 +255,9 @@ int PQueue::deletePatient(Patient * nextP, int indexToDelete){
         largerChild= largestChild(endOfArray);
 
         while(largerChild!=NULL){
-            std::cout << "New Root: " << endOfArray->name << ", largest Child: " << largerChild->name << std::endl;
+           // std::cout << "New Root: " << endOfArray->name << ", largest Child: " << largerChild->name << std::endl;
             if(largerChild->urgency > endOfArray->urgency){
-                std::cout << "Swapping " << endOfArray->name << " and " << largerChild->name <<std::endl;
+                //std::cout << "Swapping " << endOfArray->name << " and " << largerChild->name <<std::endl;
                 swapPatients(largerChild, endOfArray);
                 largerChild = largestChild(endOfArray);
             }
@@ -393,7 +342,7 @@ void PQueue::doubleArray(){
     delete[] patientArray;
     patientArray=temp;
     arraySize=arraySize*2;
-    std::cout << "Array doubled" << std::endl;
+    //std::cout << "Array doubled" << std::endl;
 
 }
 
