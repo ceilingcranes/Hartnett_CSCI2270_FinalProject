@@ -28,19 +28,34 @@ int main(){
         cout << "6. Edit patient" << endl; //Will delete an entered patient and allow you to re-enter the data.
         cout << "7. Quit" << endl;
         cin >> s;
-        i=stoi(s);
+        try{
+            i=stoi(s);
+        }
+        catch(...){
+            i=0;
+            cout << "Error: Please enter an integer." << endl;
+        }
         if(i==1){
             bool correct=false;
             string name, notes, u;
-            int urgency;
+            int urgency=-1;
             while(!correct){
 
                 cout << "Please enter the name of the patient. " << endl;
                 cin.ignore();
                 getline(cin, name);
-                cout << "Please enter the urgency as a number. The higher the number, the more urgency and the earlier in the queue." << endl;
-                getline(cin, u);
-                urgency=stoi(u);
+                while(urgency==-1){
+                    cout << "Please enter the urgency as a number. The higher the number, the more urgency and the earlier in the queue." << endl;
+                    getline(cin, u);
+                    try{
+                        urgency=stoi(u);
+
+                    }
+                    catch(...){
+                        urgency=-1;
+                        cout << "Error: Please enter an integer for the urgency." << endl;
+                    }
+                }
                 //cout << "Please enter the specialist for the patient. If none, enter 'none'" << endl;
                 //getline(cin, special);
                 cout << "Please enter any special notes about the patient. If none, enter 'none'" << endl;
