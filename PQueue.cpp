@@ -106,12 +106,12 @@ void PQueue::insertNewPatient(std::string name, int urgency, std::string notes){
 
 
     }
-    for(int k=0; k < arraySize; k++){
+    /*for(int k=0; k < arraySize; k++){
         if(patientArray[k]!=NULL)
             std::cout << "patientArray[" << k << "]: " << patientArray[k]->name << std::endl;
         else
             std::cout << "patientArray[" << k << "]: NULL" << std::endl;
-    }
+    }*/
 
 }
 
@@ -203,7 +203,7 @@ Patient * PQueue::pop(){
     }
     int i=deletePatient(nextP, 1);
     if(i==0){
-        std::cout << "Successfully deleted" << std::endl;
+        //std::cout << "Successfully deleted" << std::endl;
     }
 
     return nextP;

@@ -56,8 +56,7 @@ int main(){
                     correct=true;
 
             }
-            cout << "Inserting" << endl;
-            cout << "***********" << endl;
+
             q.insertNewPatient(name, urgency,  notes); //Inserts the new patient into the heap
 
         }
@@ -69,7 +68,7 @@ int main(){
             cout << "Next Patient: " << endl;
             Patient * p=q.pop();
             if(p==NULL){
-                cout << "Queue Empty.(main)" << endl;
+                cout << "Queue Empty." << endl;
             }
             else{
                 q.printPatientPointer(p); //Will print out name, urgency, and notes.
