@@ -39,11 +39,12 @@ int main(){
             bool correct=false;
             string name, notes, u;
             int urgency=-1;
+            cin.ignore();
             while(!correct){
 
                 cout << "Please enter the name of the patient. " << endl;
-                cin.ignore();
                 getline(cin, name);
+                cin.clear();
                 while(urgency==-1){
                     cout << "Please enter the urgency as a number. The higher the number, the more urgency and the earlier in the queue." << endl;
                     getline(cin, u);
@@ -60,26 +61,38 @@ int main(){
                 //getline(cin, special);
                 cout << "Please enter any special notes about the patient. If none, enter 'none'" << endl;
                 getline(cin, notes);
-                cout << "Is this information correct?" << endl;
+                bool valid = false;
+                do {
+                cout << "Is this information correct? (Y) or (N)" << endl;
                 cout << "Name: " << name << ", Urgency: " << urgency << ", notes: " << notes << endl;
                 string check;
                 getline(cin, check);
-                if(check=="no"||check=="n"||check=="NO"||check=="N"){
-                    cout << "Please re-enter the information." << endl;
-                }
-                else
-                    correct=true;
+                    if(check=="no"||check=="n"||check=="NO"||check=="N"||check=="No"){
+                        urgency = -1;
+                        cout << "Please re-enter the information." << endl;
+                        valid = true;
+                    }
+                    else if (check=="yes"||check=="y"||check=="YES"||check=="Y"||check=="Yes"){
+                        correct=true;
+                        valid = true;
+                    }
+                    else {
+                        cout<<"Please enter a valid input"<<endl;
+                    }
+
+                    }
+             while (!valid);
 
             }
 
-            q.insertNewPatient(name, urgency,  notes); //Inserts the new patient into the heap
+            q.insertNewPatient(name, urgency, notes); //Inserts the new patient into the heap
 
         }
-        if(i==2){
+        else if(i==2){
             q.printArray();
 
         }
-        if(i==3){
+        else if(i==3){
             cout << "Next Patient: " << endl;
             Patient * p=q.pop();
             if(p==NULL){
@@ -90,7 +103,7 @@ int main(){
             }
 
         }
-        if(i==4){
+        else if(i==4){
             cout << "Enter a patient name. "  << endl;
             string findName;
             cin.ignore();
@@ -104,14 +117,14 @@ int main(){
             }
 
         }
-        if(i==5){
+        else if(i==5){
             cout << "Enter a patient name. "  << endl;
             string findName;
             cin.ignore();
             getline(cin, findName);
             q.printPatientData(findName);
         }
-        if(i==6){
+        else if(i==6){
             cout << "Enter a patient name. "  << endl;
             string findName;
             cin.ignore();
@@ -133,7 +146,7 @@ int main(){
                 //getline(cin, special);
                 cout << "Please enter any special notes about the patient. If none, enter 'none'" << endl;
                 getline(cin, notes);
-                cout << "Is this information correct?" << endl;
+                cout << "Is this information correct? (Y) or (N)" << endl;
                 cout << "Name: " << name << ", Urgency: " << urgency << ", notes: " << notes << endl;
                 string check;
                 getline(cin, check);
