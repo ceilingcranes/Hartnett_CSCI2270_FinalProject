@@ -89,7 +89,7 @@ int main(){
 
         }
         else if(i==2){
-            q.printArray();
+            q.printPatients();
 
         }
         else if(i==3){

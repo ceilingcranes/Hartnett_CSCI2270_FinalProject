@@ -19,6 +19,30 @@ PQueue::~PQueue(){
 
 }
 
+void PQueue::printPatients(){
+    for(int k=0; k < arraySize; k++){
+        if(patientArray[k]!=NULL){
+            printPatientPointer(patientArray[k]);
+        }
+        //else
+           // std::cout << "patientArray[" << k << "]: NULL" << std::endl;
+    }
+
+}
+
+void PQueue::printArray(){
+    for(int k=0; k < arraySize; k++){
+        if(patientArray[k]!=NULL){
+            std::cout << "patientArray[" << k << "]: " << patientArray[k]->name;
+            std::cout <<", urgency: " << patientArray[k]->urgency << std::endl;
+        }
+        else
+            std::cout << "patientArray[" << k << "]: NULL" << std::endl;
+    }
+
+
+}
+
 
 void PQueue::printPatientData(std::string name){
         Patient * p = findPatient(name);
@@ -83,7 +107,7 @@ void PQueue::insertNewPatient(std::string name, int urgency, std::string notes){
         if(parent!=NULL){
             //std::cout << "Parent: " << parent->name << std::endl;
         }
-        else
+        //else
             //std::cout << "Parent is null. Parent index: " << index/2 <<std::endl;
         //to maintain heap properties: The parent has to have higher urgency
 
@@ -293,18 +317,7 @@ int PQueue::removePatient(std::string name){
 
     return 1;
 }
-void PQueue::printArray(){
-    for(int k=0; k < arraySize; k++){
-        if(patientArray[k]!=NULL){
-            std::cout << "patientArray[" << k << "]: " << patientArray[k]->name;
-            std::cout <<", urgency: " << patientArray[k]->urgency << std::endl;
-        }
-        else
-            std::cout << "patientArray[" << k << "]: NULL" << std::endl;
-    }
 
-
-}
 
 Patient* PQueue::largestChild(Patient* parent){
     Patient* largerChild=NULL;
