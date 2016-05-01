@@ -36,6 +36,7 @@ public:
     int deletePatient(Patient * nextP, int patientIndex); //removes a patient and restructures the heap.
     void printPatientData(std::string name); //Will find a patient with name "name" and print out the name, urgency, and notes.
     void printPatientPointer(Patient * p); //Will print out the name, urgency, and notes of pointer p.
+    void printPatients();
 
 private:
     //std::vector <Patient* > patientQueue;
