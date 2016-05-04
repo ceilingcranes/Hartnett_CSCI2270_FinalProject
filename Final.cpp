@@ -15,8 +15,8 @@ int main(){
 
     PQueue q;
     string s="";
-    int i=-1;
-    while(i!=7){
+    int i;
+    do {
         cout << "======Main Menu======" << endl;
         cout << "1. Enter a new patient" << endl; //To add a new patient to the heap
         cout << "2. Print patients" << endl; //Will print out the names and urgencies of all the patients currently in the heap
@@ -35,139 +35,145 @@ int main(){
             i=0;
             cout << "Error: Please enter an integer." << endl;
         }
-        if(i==1){
-            bool correct=false;
-            string name, notes, u;
-            int urgency=-1;
-            cin.ignore();
-            while(!correct){
+        switch(i){
+            case 1:{
+                bool correct=false;
+                string name, notes, u;
+                int urgency=-1;
+                cin.ignore();
+                while(!correct){
 
-                cout << "Please enter the name of the patient. " << endl;
-                getline(cin, name);
-                cin.clear();
-                while(urgency==-1){
+                    cout << "Please enter the name of the patient. " << endl;
+                    getline(cin, name);
+                    cin.clear();
+                    while(urgency==-1){
+                        cout << "Please enter the urgency as a number. The higher the number, the more urgency and the earlier in the queue." << endl;
+                        getline(cin, u);
+                        try{
+                            urgency=stoi(u);
+
+                        }
+                        catch(...){
+                            urgency=-1;
+                            cout << "Error: Please enter an integer for the urgency." << endl;
+                        }
+                    }
+                    //cout << "Please enter the specialist for the patient. If none, enter 'none'" << endl;
+                    //getline(cin, special);
+                    cout << "Please enter any special notes about the patient. If none, enter 'none'" << endl;
+                    getline(cin, notes);
+                    bool valid = false;
+                    do {
+                        cout << "Is this information correct? (Y) or (N)" << endl;
+                        cout << "Name: " << name << ", Urgency: " << urgency << ", notes: " << notes << endl;
+                        string check;
+                        getline(cin, check);
+                        if(check=="no"||check=="n"||check=="NO"||check=="N"||check=="No"){
+                            urgency = -1;
+                            cout << "Please re-enter the information." << endl;
+                            valid = true;
+                        }
+                        else if (check=="yes"||check=="y"||check=="YES"||check=="Y"||check=="Yes"){
+                            correct=true;
+                            valid = true;
+                        }
+                        else {
+                            cout<<"Please enter a valid input"<<endl;
+                        }
+
+                    }
+                    while (!valid);
+
+                }
+
+                q.insertNewPatient(name, urgency, notes); //Inserts the new patient into the heap
+                break;
+
+            }
+            case 2:{
+                q.printPatients();
+                break;
+
+            }
+            case 3:{
+                cout << "Next Patient: " << endl;
+                Patient * p=q.pop();
+                if(p==NULL){
+                    cout << "Queue Empty." << endl;
+                }
+                else{
+                    q.printPatientPointer(p); //Will print out name, urgency, and notes.
+                }
+                break;
+
+            }
+            case 4:{
+                cout << "Enter a patient name. "  << endl;
+                string findName;
+                cin.ignore();
+                getline(cin, findName);
+                int removed=q.removePatient(findName);
+                if(removed!=0){
+                    cout << "Error removing patient." << endl;
+                }
+                else{
+                    cout << "Successfully removed patient." << endl;
+                }
+                break;
+
+            }
+            case 5:{
+                cout << "Enter a patient name. "  << endl;
+                string findName;
+                cin.ignore();
+                getline(cin, findName);
+                q.printPatientData(findName);
+                break;
+
+            }
+            case 6:{
+                cout << "Enter a patient name. "  << endl;
+                string findName;
+                cin.ignore();
+                getline(cin, findName);
+
+                q.removePatient(findName);
+
+                bool correct=false;
+                string name,  notes, u;
+                int urgency;
+                while(!correct){
+
+                    cout << "Please enter the name of the patient. " << endl;
+                    getline(cin, name);
                     cout << "Please enter the urgency as a number. The higher the number, the more urgency and the earlier in the queue." << endl;
                     getline(cin, u);
-                    try{
-                        urgency=stoi(u);
-
-                    }
-                    catch(...){
-                        urgency=-1;
-                        cout << "Error: Please enter an integer for the urgency." << endl;
-                    }
-                }
-                //cout << "Please enter the specialist for the patient. If none, enter 'none'" << endl;
-                //getline(cin, special);
-                cout << "Please enter any special notes about the patient. If none, enter 'none'" << endl;
-                getline(cin, notes);
-                bool valid = false;
-                do {
-                cout << "Is this information correct? (Y) or (N)" << endl;
-                cout << "Name: " << name << ", Urgency: " << urgency << ", notes: " << notes << endl;
-                string check;
-                getline(cin, check);
-                    if(check=="no"||check=="n"||check=="NO"||check=="N"||check=="No"){
-                        urgency = -1;
+                    urgency=stoi(u);
+                    //cout << "Please enter the specialist for the patient. If none, enter 'none'" << endl;
+                    //getline(cin, special);
+                    cout << "Please enter any special notes about the patient. If none, enter 'none'" << endl;
+                    getline(cin, notes);
+                    cout << "Is this information correct? (Y) or (N)" << endl;
+                    cout << "Name: " << name << ", Urgency: " << urgency << ", notes: " << notes << endl;
+                    string check;
+                    getline(cin, check);
+                    if(check=="no"||check=="n"||check=="NO"||check=="N"){
                         cout << "Please re-enter the information." << endl;
-                        valid = true;
                     }
-                    else if (check=="yes"||check=="y"||check=="YES"||check=="Y"||check=="Yes"){
+                    else
                         correct=true;
-                        valid = true;
-                    }
-                    else {
-                        cout<<"Please enter a valid input"<<endl;
-                    }
 
-                    }
-             while (!valid);
-
-            }
-
-            q.insertNewPatient(name, urgency, notes); //Inserts the new patient into the heap
-
-        }
-        else if(i==2){
-            q.printPatients();
-
-        }
-        else if(i==3){
-            cout << "Next Patient: " << endl;
-            Patient * p=q.pop();
-            if(p==NULL){
-                cout << "Queue Empty." << endl;
-            }
-            else{
-                q.printPatientPointer(p); //Will print out name, urgency, and notes.
-            }
-
-        }
-        else if(i==4){
-            cout << "Enter a patient name. "  << endl;
-            string findName;
-            cin.ignore();
-            getline(cin, findName);
-            int removed=q.removePatient(findName);
-            if(removed!=0){
-                cout << "Error removing patient." << endl;
-            }
-            else{
-                cout << "Successfully removed patient." << endl;
-            }
-
-        }
-        else if(i==5){
-            cout << "Enter a patient name. "  << endl;
-            string findName;
-            cin.ignore();
-            getline(cin, findName);
-            q.printPatientData(findName);
-        }
-        else if(i==6){
-            cout << "Enter a patient name. "  << endl;
-            string findName;
-            cin.ignore();
-            getline(cin, findName);
-
-            q.removePatient(findName);
-
-            bool correct=false;
-            string name,  notes, u;
-            int urgency;
-            while(!correct){
-
-                cout << "Please enter the name of the patient. " << endl;
-                getline(cin, name);
-                cout << "Please enter the urgency as a number. The higher the number, the more urgency and the earlier in the queue." << endl;
-                getline(cin, u);
-                urgency=stoi(u);
-                //cout << "Please enter the specialist for the patient. If none, enter 'none'" << endl;
-                //getline(cin, special);
-                cout << "Please enter any special notes about the patient. If none, enter 'none'" << endl;
-                getline(cin, notes);
-                cout << "Is this information correct? (Y) or (N)" << endl;
-                cout << "Name: " << name << ", Urgency: " << urgency << ", notes: " << notes << endl;
-                string check;
-                getline(cin, check);
-                if(check=="no"||check=="n"||check=="NO"||check=="N"){
-                    cout << "Please re-enter the information." << endl;
                 }
-                else
-                    correct=true;
+                cout << "Inserting" << endl;
+                cout << "***********" << endl;
+                q.insertNewPatient(name, urgency, notes);
+                break;
 
             }
-            cout << "Inserting" << endl;
-            cout << "***********" << endl;
-            q.insertNewPatient(name, urgency, notes);
-
         }
-
-
-
     }
+    while(i!=7);
     cout << "Goodbye!" << endl;
 
-
-
+    return 0;
 }
