@@ -40,7 +40,7 @@ public:
 
 private:
     //std::vector <Patient* > patientQueue;
-    int arraySize=10; //the initial size of the array
+    int arraySize; //the initial size of the array
     Patient ** patientArray; //The array that holds the structure of the heap
     Patient * largestChild(Patient* parent); //Will find and return the child of Patient * parent with the highest urgency.
     void swapPatientsByIndex(int indChild, int indParent); //Will swap the pointers at indChild and indParent

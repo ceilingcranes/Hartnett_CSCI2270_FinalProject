@@ -2,10 +2,10 @@
 
 PQueue::PQueue(){
     //std::cout << "Creating new queue" << std::endl;
-    patientArray=new Patient*[10]; //set to ten
+    arraySize = 10;
+    patientArray=new Patient*[arraySize]; //set to ten
     for(int i=0; i< arraySize; i++)
         patientArray[i]=NULL;
-
 
 }
 
@@ -39,7 +39,6 @@ void PQueue::printArray(){
         else
             std::cout << "patientArray[" << k << "]: NULL" << std::endl;
     }
-
 
 }
 
