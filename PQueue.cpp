@@ -139,7 +139,7 @@ void PQueue::insertNewPatient(std::string name, int urgency, std::string notes){
 }
 
 
-//Will swap the two patients withing the array- used for maintaining heap rules
+//Will swap the two patients within the array- used for maintaining heap rules
 void PQueue::swapPatients(Patient* child, Patient* parent){
     int ch=-1, pa=-1;
     for(int i=0; i< arraySize; i++){
